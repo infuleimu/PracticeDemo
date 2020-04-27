@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.传参数
+    {{count|toD('元')}}
+    2.串联
+    {{被处理的数据|过滤器A|过滤器B}}
+    -->
+    <!-- {{count|toD('元')}} -->
+    {{count|C('sdaf')|A}}
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    Vue.filter('toD', (v, y) => {
+      console.log(v);
+      console.log(y);
+      return '$' + v + y
+    }),
+      Vue.filter('A', (v) => {
+        return '$' + v
+      }),
+      Vue.filter('C', (v, y) => {
+        return '$' + v + y
+      })
+    new Vue({
+      el: '#app',
+      data: {
+        count: 10
+      }
+    })
+  </script>
+</body>
+
+</html>

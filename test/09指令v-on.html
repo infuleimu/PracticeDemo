@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<body>
+  <div id="app">
+    {{count}}
+    <!-- v-on用于绑定事件，v-on:事件名="methods中的方法" -->
+    <button v-on:click="count=count+10">按钮1</button>
+    <button v-on:click="fn1()">按钮2</button>
+    <button v-on:click="fn1">按钮3</button>
+    <!-- 简写 把v-on写成@ -->
+    <button @click="fn2">按钮4</button>
+    <button @click="fn3(50)">按钮5</button>
+    <!-- $event代表当前的事件对象 -->
+    <button @click="fn4($event)">按钮6</button>
+    <!-- @事件名.修饰符="methods中的方法once和prevent,prevent是停止调用默认方法" -->
+    <button @click.once="fn2">按钮7</button>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        count: 100
+      },
+      methods: {
+        fn1() {
+          this.count = this.count + 1
+        },
+        fn2() {
+          this.count = this.count + 5;
+        },
+        fn3(number) {
+          this.count = this.count + number;
+        },
+        fn4(e) {
+          console.log(e);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

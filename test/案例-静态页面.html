@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      品牌名称：
+      <input type="text" v-model="itemname" v-focus />
+      <button @click="addItem">添加</button>
+    </div>
+    <div>
+      品牌名称：
+      <input type="text" placeholder="请输入搜索条件">
+    </div>
+    <table>
+      <tr>
+        <td>编号</td>
+        <td>品牌名称</td>
+        <td>创立时间</td>
+        <td>操作</td>
+      </tr>
+      <tr v-for="(value,index) in list">
+        <td>{{index+1}}</td>
+        <td>{{value.name}}</td>
+        <td>{{value.date|fmtDate}}</td>
+        <td>
+          <a href="#" @click.prevent="deleteItem(index)">删除</a>
+        </td>
+      </tr>
+      <tr>
+        <td v-if="list.length===0" colspan="4">没有品牌数据</td>
+      </tr>
+    </table>
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./moment.js"></script>
+  <script>
+    //全局自定义指令-获取焦点
+    Vue.directive('focus', {
+      inserted(el) {
+        el.focus()
+      }
+    })
+    //全局过滤器-处理日期格式
+    Vue.filter('fmtDate', (v) => {
+      return moment(v).format('YYYY-MM-DD HH:MM:ss')
+    })
+    var list = [
+      {
+        name: 'TCL',
+        date: new Date()
+      },
+      {
+        name: 'adfa',
+        date: new Date()
+      },
+      {
+        name: 'wefd',
+        date: new Date()
+      },
+    ];
+    new Vue({
+      el: '#app',
+      data: {
+        //ES6当key和VALUE名一样时，只写一个单词
+        list,
+        itemname: ''
+      },
+      methods: {
+        addItem() {
+          this.list.unshift({
+            name: this.itemname,
+            date: new Date()
+          })
+        },
+        deleteItem(index) {
+          //删除splice(索引，长度1)
+          if (confirm('确定删除吗？')) {
+            this.list.splice(index, 1)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

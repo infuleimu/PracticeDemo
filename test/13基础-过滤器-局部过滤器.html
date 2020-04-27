@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+
+      },
+      //注意，是filters，多了个s
+      //2.function(v){return处理结果}
+      //3.在视图中{{msg|过滤器名字}}
+      filters: {
+        // toUpper:function(v){
+
+        // },
+        toUpper: (v) => {
+          return v.charAt(0).toUpperCase() + v.substr(1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

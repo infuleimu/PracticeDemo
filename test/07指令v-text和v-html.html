@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<body>
+  <div id="app">
+    <!-- v-text的作用是替换标签的全部内容，可以替换掉innerTest指令 -->
+    <p v-text="msg">我是p标签的全部内容</p>
+    <p v-text="msg">{{count}}</p>
+    <hr>
+    <p>我是：{{msg}}</p>
+    <p v-text="str"></p>
+    <!-- v-html能识别字符串中的标签，可以替换掉innerHtml指令 -->
+    <!-- 不推荐使用v-html，会有安全问题（跨站脚本攻击） -->
+    <p v-html="str"></p>
+    <!-- v-show跟v-if都是根据条件渲染
+      区别在于v-show只是单纯地修改标签的display
+      而v-if是真正的根据条件渲染，即不达成条件不渲染标签 -->
+    <p v-show="ok">111</p>
+    <p v-if="ok">123</p>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        ok: false,
+        count: 100,
+        msg: 'abc',
+        str: '<sapn onclick="alert(1)">span标签</span>'
+      },
+      methods: {
+        fn1() {
+          console.log(this.count);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

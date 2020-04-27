@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{msg}}
+    <!-- 多行输入框textarea内容区域的字符是无效的 -->
+    <textarea v-model="msg"></textarea>
+    <!--复选框
+    1.一个复选框v-model="boolean"
+    2.多个复选框时v-model绑定到数组
+    数组中保存的值是选中的复选框中的value
+    -->
+    {{check}}
+    <input type="checkbox" v-model="check">
+    {{checklist}}
+    <input type="checkbox" value="女" v-model="checklist">
+    <input type="checkbox" value="男" v-model="checklist">
+    <input type="checkbox" value="其他" v-model="checklist">
+    <!-- 单选按钮 -->
+    {{picked}}
+    <input type="radio" value="小明" v-model="picked">AA
+    <input type="radio" value="小红" v-model="picked">AA
+    <!-- 下拉框 
+    select的值来源于被选中的option的value值
+    显示默认option默认option的value和select的初始值一致
+    -->
+    {{select}}
+    <select name="" id="" v-model="select">
+      <option value="" disabled>请选择</option>
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="深圳">深圳</option>
+    </select>
+  </div>
+  <script src='./vue.js'></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'abc',
+        check: true,
+        checklist: [],
+        picked: '',
+        select: ''
+      },
+      methods: {
+        fn(e) {
+          this.msg = e.target.value
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
