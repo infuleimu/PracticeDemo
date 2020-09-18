@@ -6,7 +6,8 @@ import List from '../components/list/list.vue'
 import Bar from '../components/bar/bar.vue'
 import addHero from '../components/list/addHero.vue';
 import modifyHero from '../components/list/modifyHero.vue'
-
+import addWeapon from '../components/foo/addWeapon.vue'
+import modifyWeapon from '../components/foo/modifyWeapon.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,16 @@ const routes = [
     path: '/foo',
     name: 'foo',
     component: Foo
+  },
+  {
+    path: '/addWeapon',
+    name: 'addWeapon',
+    component: addWeapon
+  },
+  {
+    path: '/modifyWeapon/:id',
+    name: 'modifyWeapon',
+    component: modifyWeapon
   },
   {
     path: '/addHero',
